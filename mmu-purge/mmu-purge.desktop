@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=MMU Purge settings
+Comment=Software to stor MMU settings for 3D printers
+Exec=bash ~/Documents/mmu-purge/start.sh
+#Icon=/home/owen/Documents/TouchPortal Stuff/Icons/prusa-slicer.png
+Terminal=false
+Type=Application
+Categories=Utility;
