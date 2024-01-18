@@ -22,12 +22,12 @@ This repository contains a Python application using Tkinter for MMU (Memory Mana
     python mmu_purge.py
     ```
 
-## Features
+## Features in the current release
 
-- **Settings Dialog:** Configure data file path, window width, and window height.
+- **Settings Dialog:** Configure data file path, window width, and height.
 - **Treeview Interface:** View and manage color relationships and purge amounts.
-- **Save and Load Data:** Store color relationships to a text file and reload them.
-- **Interactive UI:** Easily add new colors, save changes, and load existing data.
+- **Save and Load Data:** Store colour relationships to a text file and reload them.
+- **Interactive UI:** Easily add new colours, save changes, and load existing data.
 
 ## Requirements
 
@@ -37,7 +37,7 @@ This repository contains a Python application using Tkinter for MMU (Memory Mana
 
 ## Installation
 
-No installation is required for this project. Ensure you have Python installed on your system.
+No installation is required for this project. Could you make sure you have Python installed on your system?
 
 ## Configuration
 
@@ -59,5 +59,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgments
 
-Thank you for checking out the MMU Purge Settings project! If you have any questions or suggestions, feel free to open an issue or contribute.
+Thank you for checking out the MMU Purge Settings project! Feel free to open an issue or contribute if you have any questions or suggestions.
 
