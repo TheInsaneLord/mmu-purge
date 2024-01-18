@@ -1,26 +1,23 @@
 # MMU Purge Settings
 
-This repository contains a Python application using Tkinter for MMU (Memory Management Unit) Purge Settings. The application allows users to manage color relationships and purge amounts.
+This repository contains a Python application using Tkinter for MMU (Memory Management Unit) Purge Settings. The application allows users to manage colour relationships and purge amounts.
 
 ## Usage
 
-1. Clone the repository:
+To ensure you're using the latest and most stable version of MMU Purge Settings, it's recommended to download and run the application from the [latest release](https://github.com/TheInsaneLord/mmu-purge/releases). Follow these steps:
 
-    ```bash
-    git clone https://github.com/your-username/mmu-purge.git
-    ```
-
-2. Navigate to the project directory:
-
-    ```bash
-    cd mmu-purge
-    ```
-
-3. Run the application:
+1. Visit the [Releases](https://github.com/TheInsaneLord/mmu-purge/releases) page on GitHub.
+2. Locate the latest release, which will be at the top of the list.
+3. Download the file for your platform.
+4. Extract the downloaded files (if applicable) and navigate to the project directory.
+5. Run the application:
 
     ```bash
     python mmu_purge.py
     ```
+
+By using the latest release, you ensure access to new features, enhancements, and bug fixes. If you encounter any issues or have feedback, please check the [Issues](https://github.com/your-username/mmu-purge/issues) page on GitHub or open a new issue.
+
 
 ## Features in the current release
 
