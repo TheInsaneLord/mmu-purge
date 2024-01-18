@@ -6,6 +6,8 @@ import os
 
 mmu_data_path = "~/Documents/mmu-purge/"
 mmu_data_file = os.path.expanduser(os.path.join(mmu_data_path, "mmu-data.txt"))
+ver_num = 1.0
+
 
 print(mmu_data_path)
 print(mmu_data_file)
@@ -13,7 +15,7 @@ print(mmu_data_file)
 class MMUGUI:
     def __init__(self, root):
         # Setting title
-        root.title("MMU Purge Settings")
+        root.title("MMU Purge Settings v{}".format(str(ver_num)))
 
         # Setting window size
         width = 600
@@ -62,21 +64,31 @@ class MMUGUI:
                 for color, relationships in self.mmu_data.items():
                     relationships_str = " - ".join([f"{key}:{value}" for key, value in relationships.items()])
                     file.write(f"{color} | {relationships_str}\n")
-            messagebox.showinfo("Save", "Data saved successfully.")
+            messagebox.showinfo("Save", "Data saved successfully to \n{}.".format(mmu_data_file))
         except Exception as e:
             messagebox.showerror("Error", f"An error occurred while saving data: {e}")
 
     def load_data_from_txt(self):
         mmu_data = {}
         try:
-            with open(mmu_data_file, 'r') as file:
-                for line in file:
-                    color, relationships_str = line.strip().split(" | ")
-                    relationships = {pair.split(":")[0]: int(pair.split(":")[1]) for pair in relationships_str.split(" - ")}
-                    mmu_data[color] = relationships
-        except (FileNotFoundError, ValueError, KeyError):
-            return {}
+            if os.path.exists(mmu_data_file):
+                print(f"Data File found")
+                with open(mmu_data_file, 'r') as file:
+                    for line in file:
+                        color, relationships_str = line.strip().split(" | ")
+                        relationships = {pair.split(":")[0]: int(pair.split(":")[1]) for pair in relationships_str.split(" - ")}
+                        mmu_data[color] = relationships
+        except Exception as e:
+            print(f"Error loading data: {e}")
+            return {}  # Return an empty dictionary in case of an error
+
+        # Update self.mmu_data and populate the Treeview
+        self.mmu_data = mmu_data
+        self.populate_treeview()
+
         return mmu_data
+
+
 
     def populate_treeview(self):
         # Clear existing columns
@@ -121,24 +133,23 @@ class MMUGUI:
                 # Update Treeview with new purge amount
                 self.tree.set(item, column_id, purge_amount)
 
-                # Update data dictionary
+                # Update data dictionary for the edited columns
                 self.mmu_data[color_row][color_column] = purge_amount
                 self.mmu_data[color_column][color_row] = purge_amount
 
-                # Synchronize changes between two colors
+                # Synchronize changes between two columns
                 for col in self.mmu_data.keys():
                     if col != color_row and col != color_column:
                         shared_value = self.mmu_data[color_row][col]
-                        self.tree.set(item, self.tree.heading(col, 'text'), shared_value)
                         self.mmu_data[col][color_row] = shared_value
                         self.mmu_data[color_row][col] = shared_value
 
-                for col in self.mmu_data.keys():
-                    if col != color_row and col != color_column:
                         shared_value = self.mmu_data[color_column][col]
-                        self.tree.set(item, self.tree.heading(col, 'text'), shared_value)
                         self.mmu_data[col][color_column] = shared_value
                         self.mmu_data[color_column][col] = shared_value
+
+                # Call populate_treeview to update the Treeview immediately
+                self.populate_treeview()
 
     def add_color(self):
         new_color = self.color_entry.get().strip()
